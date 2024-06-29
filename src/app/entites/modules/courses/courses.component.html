@@ -1,0 +1,27 @@
+<span class="title">Текущие курсы</span>
+<div class="wrapper">
+  @for (course of courses; track $index) {
+    <div (click)="navigateTo(course)"
+         class="course">
+      <span class="course__title text_color text_bold">{{ course[LCourse.TITLE] }}</span>
+      <span class="course__description">
+        <span class="text_color">#</span>
+        <span>{{ course[LCourse.DESCRIPTION] }}</span>
+      </span>
+      <img [src]="course[LCourse.SRC]"
+           [alt]="course[LCourse.TITLE]">
+      @if (course[LCourse.HAS_ROUTE]) {
+        <a [routerLink]="course[LCourse.PATH]"
+           class="link_button">
+          подробнее
+        </a>
+      } @else {
+        <a [href]="course[LCourse.PATH]"
+           target="_blank"
+           class="link_button">
+          подробнее
+        </a>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,353 @@
+@import "../../../../assets/styles/theming";
+
+:host {
+  @include flexWrapper(column, flex-start, stretch);
+  @include wrapperInner();
+  @include font-size-s();
+  @include fillLinkButton();
+  @include titledSection();
+  @include title();
+  @include text();
+  @include fadeIn();
+  background: $white;
+  width: 100%;
+
+  section:not(:first-child) {
+    gap: adaptiveValue(48, 16) !important;
+    padding-block: adaptiveValue(64, 32);
+  }
+
+  .link_button {
+    align-self: center;
+  }
+
+  .promo {
+    @include firstTitle(75%);
+    padding-block: adaptiveValue(64, 32);
+    background-color: $orange-40-a;
+    overflow: hidden;
+
+    &__wrapper {
+      @include flexWrapper();
+      gap: adaptiveValue(32, 16);
+
+      > span {
+        align-self: center;
+        text-align: center;
+      }
+    }
+
+    &__pie {
+      @include flexWrapper(row, space-between, stretch);
+      gap: adaptiveValue(64, 32);
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;
+      }
+
+      &-wrapper {
+        @include flexWrapper(column, space-between);
+        gap: adaptiveValue(64, 32);
+        flex: 1 1 75%;
+      }
+
+      &-title {
+        @include font-size-m;
+      }
+
+      img {
+        object-fit: contain;
+        max-width: 50%;
+
+        @include maxWidth($breakpoint-m) {
+          align-self: center;
+          max-width: 75%;
+        }
+
+        @include maxWidth($breakpoint-s) {
+          max-width: 100%;
+        }
+      }
+
+      &-text {
+        @include flexWrapper();
+        gap: adaptiveValue(20, 14);
+      }
+    }
+
+    &__man {
+      @include flexWrapper(row, space-between, center);
+      gap: adaptiveValue(96, 32);
+      align-self: flex-end;
+      text-align: right;
+      padding-block: adaptiveValue(96, 48) adaptiveValue(48, 24);
+      width: 100%;
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;
+        gap: gap_l(1.5);
+      }
+
+      &-text {
+        flex: 1 1 75%;
+        @include flexWrapper(column, flex-start, flex-end);
+        gap: adaptiveValue(20, 14);
+      }
+
+      img {
+        object-fit: contain;
+        max-width: 25%;
+
+        @include maxWidth($breakpoint-l) {
+          max-width: 20%;
+        }
+
+        @include maxWidth($breakpoint-m) {
+          order: 1;
+          max-width: 200px;
+        }
+      }
+    }
+  }
+
+  .results-2022 {
+    &__wrapper {
+      @include flexWrapper(row, flex-start, stretch);
+      gap: adaptiveValue(48, 32);
+      overflow: hidden;
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;;
+        align-items: center;
+      }
+
+      &-text {
+        @include flexWrapper(column, space-between);
+        gap: adaptiveValue(32, 16);
+        flex: 1 1 75%;
+        position: relative;
+        z-index: 2;
+      }
+
+      img {
+        object-fit: contain;
+        object-position: bottom;
+        max-width: 20%;
+
+        @include maxWidth($breakpoint-l) {
+          max-width: 25%;
+        }
+
+        @include maxWidth($breakpoint-m) {
+          max-width: 200px;
+        }
+      }
+    }
+
+    a {
+      align-self: center;
+      margin-top: adaptiveValue(16, 8);
+    }
+  }
+
+  .results-2023 {
+    border-top: 2px dashed $orange-100;
+    overflow: hidden;
+
+    &__wrapper {
+      @include flexWrapper(row, space-between, stretch);
+      gap: adaptiveValue(48, 32);
+      padding-bottom: adaptiveValue(32, 16);
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;
+      }
+
+      @include minWidth($breakpoint-l) {
+        width: 80%;
+        margin-inline: auto;
+      }
+    }
+
+    &__card {
+      @include flexWrapper();
+      @include card();
+      gap: adaptiveValue(32, 16);
+      padding: adaptiveValue(32, 16);
+
+      @include minWidth($breakpoint-m) {
+        width: calc((100% - #{adaptiveValue(48, 32)}) / 2);
+      }
+
+      &:first-child {
+        background: $orange-55-a url("../../../../assets/images/lines/lines-4.png") no-repeat center;
+        background-size: cover;
+      }
+
+      &:last-child {
+        background: $orange-55-a url("../../../../assets/images/lines/lines-5.png") no-repeat center;
+        background-size: cover;
+      }
+
+      &-wrapper {
+        @include flexWrapper(column, space-between);
+        gap: adaptiveValue(16, 8);
+        height: 100%;
+
+        &.olympiads {
+          li {
+            padding-left: adaptiveValue(28, 20);
+            position: relative;
+
+            &:before {
+              @include blockSize(30px, adaptiveValue(22, 16));
+              content: '';
+              position: absolute;
+              left: 0;
+              background: no-repeat url("../../../../assets/svg/home/check.svg");
+              background-size: contain;
+            }
+          }
+        }
+
+        &.admission-tests {
+          @include lightButton();
+          text-align: center;
+
+          @include maxWidth($breakpoint-m) {
+            gap: $gap;
+          }
+
+          .link_button {
+            @include minWidth($breakpoint-m) {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+
+    &__title {
+      align-self: center;
+    }
+  }
+
+  .histories {
+    @include lightButton;
+    padding-block: adaptiveValue(48, 24);
+    background: $orange-40-a;
+
+    &__wrapper {
+      @include flexWrapper(row, space-evenly, stretch);
+      gap: adaptiveValue(48, 24) adaptiveValue(32, 16);
+      flex-wrap: wrap;
+
+      @include minWidth($breakpoint-s) {
+        @include maxWidth($breakpoint-l) {
+          flex-direction: column;
+        }
+      }
+    }
+
+    &__card {
+      @include flexWrapper(column, flex-start, stretch);
+      @include card();
+      gap: adaptiveValue(16, 8);
+      padding: adaptiveValue(32, 16);
+
+      @include minWidth($breakpoint-s) {
+        flex: 1 0 350px;
+        max-width: 85%;
+      }
+
+      @include minWidth($breakpoint-s) {
+        max-width: 100%;
+      }
+
+      @include minWidth($breakpoint-l) {
+        max-width: 450px;
+      }
+
+      @include minWidth($breakpoint-xl + 200) {
+        min-width: 550px;
+      }
+
+      &-title {
+      }
+
+      &-subtitle {
+        @include font-size-xs();
+        color: rgba($black, .5);
+      }
+
+      &-content {
+        @include flexWrapper(column, flex-start, stretch);
+        gap: adaptiveValue(32, 16);
+
+        @include minWidth($breakpoint-m) {
+          @include maxWidth($breakpoint-l) {
+            flex-direction: row;
+          }
+        }
+      }
+
+      &-img {
+        @include minWidth($breakpoint-m) {
+          @include maxWidth($breakpoint-l) {
+            flex: 0 0 30%;
+          }
+        }
+
+        img {
+          width: 100%;
+          aspect-ratio: 3/4;
+
+          @include minWidth($breakpoint-s) {
+            max-width: 350px;
+            margin-inline: auto;
+          }
+        }
+      }
+    }
+
+    .link_button {
+      white-space: pre-wrap;
+      text-align: center;
+      margin-top: adaptiveValue(32, 16);
+    }
+  }
+
+  .youtube {
+    @include flexWrapper(column, flex-start, stretch);
+    gap: adaptiveValue(64, 32);
+    box-shadow: rgba($black, 0.25) 0 0 25px;
+
+    &__title {
+      font-size: adaptiveValue(36, 28);
+    }
+
+    &__wrapper {
+      @include flexWrapper(row, space-evenly, stretch);
+      gap: adaptiveValue(48, 24) adaptiveValue(32, 16);
+      flex-wrap: wrap;
+
+      iframe {
+        aspect-ratio: 16/9;
+
+        @include maxWidth($breakpoint-s) {
+          width: 100%;
+        }
+
+        @include minWidth($breakpoint-s) {
+          @include maxWidth($breakpoint-m) {
+            width: 80%;
+          }
+        }
+
+        @include minWidth($breakpoint-m) {
+          flex: 1 0 350px;
+        }
+      }
+    }
+  }
+}

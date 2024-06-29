@@ -1,0 +1,210 @@
+<section class="course wrapper-inner">
+  <h2 class="title">
+    <span>КУРС ПО ДВИ</span>
+    <span class="splash text_accent">
+      <span>#</span>
+      <span>Подготовим вас к ДВИ в любой вуз!</span>
+    </span>
+  </h2>
+  <div (click)="scrollToRates(ratesBlock)"
+       class="course__start">
+    <span>Старт 1 июня!</span>
+    <span class="link_button">
+      <span>ЗАПИСАТЬСЯ НА КУРС</span>
+    </span>
+  </div>
+</section>
+
+<section class="blocks wrapper-inner">
+  <span class="subtitle">Основные блоки</span>
+  <div class="blocks__wrapper">
+    @for (mainBlock of mainBlocks; track $index) {
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="blocks__card">
+        <span class="blocks__card-title text_bold">{{ mainBlock[LCard.TITLE] }}</span>
+        <div class="blocks__card-text">
+          {{ mainBlock[LCard.TEXT] }}
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="program wrapper-inner">
+  <span class="subtitle">Подробная программа</span>
+  <div class="program__wrapper">
+    @for (programItem of programItems; track $index) {
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="program__card">
+        <span class="text_accent text_bold">{{ $index + 1 }}</span>
+        <div class="program__card-wrapper">
+          <span class="program__card-title text_bold">{{ programItem[LCard.TITLE] }}</span>
+          <div class="program__card-text">
+            {{ programItem[LCard.TEXT] }}
+          </div>
+        </div>
+      </div>
+    }
+    <a pAnimateOnScroll
+       href="https://classroom.google.com/c/NjYxNTE2OTMxNzk1?cjc=vfg66jo"
+       target="_blank"
+       enterClass="fadeinbottom"
+       class="link_button">
+      <span>Получить пробные уроки</span>
+    </a>
+  </div>
+</section>
+
+<section *ngLet="isMobile$ | async as isMobile"
+         class="lessons wrapper-inner">
+  <span class="subtitle">Формат занятий</span>
+  <p-carousel [value]="lessonsFormats"
+              [numVisible]="isMobile ? 1 : 2"
+              [numScroll]="1"
+              [circular]="true"
+              [autoplayInterval]="3000">
+    <ng-template pTemplate="item"
+                 let-lessonsFormat>
+      <div class="lessons__card">
+        <span>{{ lessonsFormat[LImage.ALT] }}</span>
+        <img [src]="lessonsFormat[LImage.SRC]"
+             [alt]="lessonsFormat[LImage.ALT]"
+             loading="lazy">
+      </div>
+    </ng-template>
+  </p-carousel>
+</section>
+
+<section class="speakers wrapper-inner">
+  <span class="subtitle">Приглашенные спикеры</span>
+  <div class="speakers__wrapper">
+    <div class="speakers__item">
+      <img src="../../../../../../../assets/images/courses/admission-tests/speaker-stelmak.jpeg"
+           alt="Наталия Стельмак"
+           loading="lazy"
+           class="speakers__img">
+      <div class="speakers__title">
+        <span class="text_bold">Наталия Стельмак,</span><br>
+        <span>преподаватель ВШЭ и РАНХиГС</span>
+      </div>
+    </div>
+
+    <div class="speakers__item speakers__item_right">
+      <div class="speakers__title speakers__title_right">
+        <span class="text_bold text_bold">Григорий Влидимирович Прутцков,</span><br>
+        <span>профессор Института медиа ВШЭ, 2001-2023 гг. - доцент факультета журналистики МГУ&nbsp;им.&nbsp;М.В.&nbsp;Ломоносова, преподаватель</span>
+      </div>
+      <img src="../../../../../../../assets/images/courses/admission-tests/speaker-prutskov.jpg"
+           alt="Григорий Влидимирович Прутцков"
+           loading="lazy"
+           class="speakers__img">
+    </div>
+
+    <div class="speakers__item">
+      <img src="../../../../../../../assets/images/courses/admission-tests/speaker-bukharova.jpg"
+           alt="Елизавета Бухарова"
+           loading="lazy"
+           class="speakers__img">
+      <div class="speakers__title">
+        <span class="text_bold text_bold">Елизавета Бухарова,</span><br>
+        <span>корреспондент телеканала "Москва&nbsp;24"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rates wrapper-inner">
+  <span #ratesBlock
+        class="subtitle">Тарифы</span>
+  <div class="rates__wrapper">
+    @for (rate of rates; track $index) {
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="rates__card">
+        <span class="rates__card-header text_bold">{{ rate[LRate.TITLE] }}</span>
+        <div class="rates__card-content">
+          @for (point of rate[LRate.POINTS]; track $index) {
+            <span>{{ point }}</span>
+          }
+        </div>
+        <div class="rates__card-wrapper">
+          @if (rate[LRate.PRICE_EXT]) {
+            <div class="price">
+              <span>4 недели</span>
+              <span class="price_dotted"></span>
+              <span>{{ rate[LRate.PRICE] }}</span>
+            </div>
+            <div class="price">
+              <span>1,5 месяца</span>
+              <span class="price_dotted"></span>
+              <span>{{ rate[LRate.PRICE_EXT] }}</span>
+            </div>
+          } @else {
+            <div class="price">
+              <span>Общая стоимость</span>
+              <span class="price_dotted"></span>
+              <span>{{ rate[LRate.PRICE] }}</span>
+            </div>
+          }
+        </div>
+        <a [href]="rate[LRate.URL]"
+           target="_blank"
+           class="link_button">
+          <span>выбрать</span>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="promo wrapper-inner">
+  <div class="promo__content">
+    <div pAnimateOnScroll
+         enterClass="fadeinleftlight"
+         class="promo__content-text">
+      <span>Наши выпускники </span>
+      <span class="text_accent">прошли этот курс</span>
+      <span> и </span>
+      <span class="text_accent">получили максимум</span>
+      <span> баллов на ДВИ!</span>
+    </div>
+    <div pAnimateOnScroll
+         enterClass="fadeinright"
+         class="promo__content-text">
+      <span>Теперь они - </span>
+      <span class="text_accent">студенты лучших вузов</span>
+      <span> страны!</span>
+    </div>
+    <img src="assets/images/home/media-0.jpg"
+         alt="Наши выпускники"
+         loading="lazy">
+  </div>
+  <div class="promo__actions">
+    <a [routerLink]="'/' + ERoute.RESULTS"
+       class="link_button">
+      <span>смотреть результаты</span>
+    </a>
+    <a href="https://vk.com/topic-214661467_49139854"
+       target="_blank"
+       class="link_button">
+      <span>читать отзывы</span>
+    </a>
+  </div>
+</section>
+
+<section class="faq wrapper-inner">
+  <span class="subtitle">Ответы на часто задаваемые вопросы</span>
+  <p-accordion [multiple]="true">
+    @for (faqItem of faqItems; track $index) {
+      <p-accordionTab [header]="faqItem[LFaq.HEADER]">
+        <span>{{ faqItem[LFaq.TEXT] }}</span>
+      </p-accordionTab>
+    }
+  </p-accordion>
+  <span (click)="scrollToRates(ratesBlock)"
+        class="link_button">
+    <span>ЗАПИСАТЬСЯ НА КУРС</span>
+  </span>
+</section>

@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Gilroy, sans-serif !important;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: 1.35;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  font: inherit;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+  text-decoration: none;
+}
+
+a,
+button,
+div,
+span {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button:focus,
+button:focus-visible,
+button:focus-within,
+a:focus,
+a:focus-visible,
+a:focus-within {
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}

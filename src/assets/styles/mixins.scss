@@ -1,0 +1,392 @@
+@import "misc";
+
+@mixin font-size-xs() {
+  font-size: adaptiveValue(18, 14);
+}
+
+@mixin font-size-s() {
+  font-size: adaptiveValue(22, 16);
+}
+
+@mixin font-size-m() {
+  font-size: adaptiveValue(28, 20);
+}
+
+@mixin font-size-l() {
+  font-size: adaptiveValue(64, 36);
+}
+
+@mixin flexWrapper($fd: column, $jc: flex-start, $ai: flex-start) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin blockSize($w: 100%, $h: 100%) {
+  width: $w;
+  height: $h;
+}
+
+@mixin ellipsisOverflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin linkButton() {
+  .link_button {
+    @include flexWrapper(row, center, center);
+    @include ellipsisOverflow();
+    @include animation($transition *.75);
+    text-transform: uppercase;
+    font-weight: $font-bold;
+    width: fit-content;
+    padding: padding_s(3) $padding;
+    border-radius: $border-radius;
+    cursor: pointer;
+  }
+}
+
+@mixin fillLinkButton() {
+  @include linkButton();
+
+  .link_button {
+    color: $white;
+    background: $orange-100;
+    border: 2px solid $orange-100;
+
+    @include onHover {
+      color: $orange-100;
+      background: $white;
+      border-color: currentColor;
+    }
+  }
+}
+
+@mixin lightButton() {
+  @include linkButton();
+
+  .link_button {
+    color: $orange-100;
+    background: $orange-55-a;
+    padding-inline: padding_l(2) padding_l(1.75);
+
+    @include onHover {
+      background: $orange-50;
+    }
+
+    span {
+      padding-right: adaptiveValue(28, 20);
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: '';
+        background: no-repeat url("../svg/chevron.svg") center;
+        height: 70%;
+        aspect-ratio: 1;
+        top: 14%;
+        right: 0;
+      }
+    }
+  }
+}
+
+@mixin outlineLinkButton() {
+  @include linkButton();
+
+  .link_button {
+    color: $orange-100;
+    background: $white;
+    border: 2px solid currentColor;
+
+    @include onHover {
+      color: $white;
+      background: $orange-100;
+      border-color: $orange-100;
+    }
+  }
+}
+
+@mixin title() {
+  .title,
+  .subtitle {
+    font-weight: $font-bold;
+    color: $orange-100;
+    text-transform: uppercase;
+  }
+
+  .title {
+    @include font-size-l();
+
+    &_accent {
+      color: $white;
+
+      &-default {
+        text-transform: none;
+      }
+    }
+  }
+
+  .subtitle {
+    @include font-size-m();
+    border-bottom: 2px solid currentColor;
+  }
+}
+
+@mixin text() {
+  .text {
+    &_accent {
+      background: $orange-95-a;
+      padding-inline: padding_s(4);
+      border-radius: border_radius_s(2);
+    }
+
+    &_bold {
+      font-weight: $font-bold;
+    }
+
+    &_caps {
+      text-transform: uppercase;
+    }
+
+    &_color {
+      color: $orange-100;
+    }
+  }
+}
+
+@mixin card() {
+  background: $white;
+  border-radius: $border-radius * 2;
+  box-shadow: rgba($black, 0.25) 0 4px 6px 1px;
+}
+
+@mixin wrapperInner() {
+  .wrapper-inner {
+    padding-inline: $wrapper-padding-inline;
+  }
+}
+
+@mixin titledSection() {
+  section:has(.title) {
+    @include flexWrapper(column, flex-start, stretch);
+    gap: adaptiveValue(64, 32);
+  }
+
+  section:has(.subtitle) {
+    @include flexWrapper(column, flex-start, stretch);
+    gap: adaptiveValue(32, 16);
+  }
+}
+
+@mixin animation($tr: $transition) {
+  -webkit-transition: all $tr ease-in-out; /** Chrome & Safari **/
+  -moz-transition: all $tr ease-in-out; /** Firefox **/
+  -o-transition: all $tr ease-in-out; /** Opera **/
+  transition: all $tr ease-in-out;
+}
+
+@mixin textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin underlineLink() {
+  @include animation();
+  position: relative;
+
+  &:after {
+    @include animation();
+    content: '';
+    position: absolute;
+    margin-inline: auto;
+    background-color: $orange-100;
+    @include blockSize(0, 1.5px);
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    color: $orange-100;
+
+    &:after {
+      width: 100%;
+    }
+  }
+
+  @include onHover {
+    color: $orange-100;
+
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+@mixin maxWidth($width) {
+  @media (max-width: ($width - 0.2) + px) {
+    @content;
+  }
+}
+
+@mixin minWidth($width) {
+  @media (min-width: $width + px) {
+    @content;
+  }
+}
+
+@mixin onHover() {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin fadeIn($tr: $transition*2) {
+  .fadeinleft {
+    animation: fadeInLeft $tr ease-in-out;
+  }
+
+  .fadeinleftlight {
+    animation: fadeInLeftLight $tr ease-in-out;
+  }
+
+  .fadeinright {
+    animation: fadeInRight $tr ease-in-out;
+  }
+
+  .fadeinbottom {
+    animation: fadeInBottom $tr ease-in-out;
+  }
+}
+
+@mixin firstTitle($after-width) {
+  .title {
+    position: relative;
+    width: fit-content;
+    padding-block: adaptiveValue(10, 0);
+
+    &:before,
+    &:after {
+      animation: fadeInLeft $transition*2;
+      content: '';
+      position: absolute;
+      height: 2px;
+      background-color: $orange-100;
+    }
+
+    &:before {
+      width: calc($wrapper-padding-inline + 50%);
+      bottom: 100%;
+      right: 60%;
+    }
+
+    &:after {
+      width: $after-width;
+      top: 100%;
+      left: 55%;
+    }
+  }
+}
+
+@mixin slider() {
+  ::ng-deep {
+    p-carousel {
+      position: relative;
+      z-index: 1;
+    }
+
+    .p-carousel {
+      &-container,
+      &-content {
+        gap: $gap;
+      }
+
+      &-container {
+        justify-content: space-between;
+        position: relative;
+
+        button {
+          display: none;
+
+          @include minWidth($breakpoint-l) {
+            $size: adaptiveValue(75, 35);
+            @include blockSize($size, $size);
+            @include animation();
+            display: block;
+            border-radius: 50%;
+            padding: 10px;
+            margin: 0;
+            border: none;
+            cursor: pointer;
+            color: $orange-100;
+            background: transparent;
+          }
+
+          &:first-of-type {
+            padding-right: 12px;
+          }
+
+          &:last-of-type {
+            padding-left: 12px;
+          }
+
+          @include onHover {
+            background: rgba($orange-100, .2);
+          }
+
+          .p-icon-wrapper,
+          .p-icon {
+            @include blockSize();
+          }
+        }
+      }
+
+      &-items-content {
+        border-radius: border_radius_l(2);
+        overflow: hidden;
+      }
+
+      &-indicators {
+        gap: adaptiveValue(16, 8);
+
+        li {
+          margin: 0;
+          padding: padding_s(4);
+        }
+
+        button {
+          $size: adaptiveValue(15, 10);
+          @include blockSize($size, $size);
+          @include animation();
+          border-radius: 50%;
+          padding: 0;
+          background: transparent;
+          border: 2px solid $orange-100;
+          cursor: pointer;
+        }
+
+        .p-highlight button {
+          background: $orange-100;
+        }
+      }
+    }
+  }
+}
+
+
+@mixin gridTrack($no, $start, $end, $start-row: 0, $end-row: 0) {
+  &:nth-child(#{$no}) {
+    grid-column: #{$start}/#{$end};
+    @if ($start-row !=0 and $end-row) {
+      grid-row: #{$start-row}/#{$end-row};
+    }
+  }
+}

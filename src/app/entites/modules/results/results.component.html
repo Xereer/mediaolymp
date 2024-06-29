@@ -1,0 +1,184 @@
+<section class="promo wrapper-inner">
+  <span class="title">Результаты</span>
+  <div class="promo__wrapper">
+    <div class="promo__pie">
+      <div class="promo__pie-wrapper">
+        <div class="promo__pie-title">
+          <span>Выпускники МедиаОлимпа&nbsp;– </span>
+          <span class="text_accent">победители</span>
+          <span> перечневых олимпиад и </span>
+          <span class="text_accent">высокобалльники ДВИ</span>
+        </div>
+        <div class="promo__pie-text">
+          <span>Наши ученики поступают как в столичные вузы, так и в региональные.</span>
+          <span>
+            <span class="text_accent">75%</span>
+            <span> выпускников учатся на бюджете,</span><br/>
+            <span class="text_accent">25%</span>&nbsp;
+            <span>– на договорной основе.</span>
+          </span>
+          <span>Каждый второй платник – обладатель скидки на обучение за высокую сумму баллов ЕГЭ.</span>
+        </div>
+      </div>
+      <img pAnimateOnScroll
+           enterClass="fadeinleftlight"
+           src="../../../../assets/images/results/pie-chart.png"
+           alt="график">
+    </div>
+    <div class="promo__man">
+      <img pAnimateOnScroll
+           enterClass="fadeinleft"
+           src="../../../../assets/images/results/man.png"
+           alt="статистика">
+      <div class="promo__man-text">
+        <span>
+          <span>По статистике школы, </span>
+          <span class="text_accent">каждый второй ученик</span>
+          <span> становится </span>
+          <span class="text_accent">победителем или призером 2-3 олимпиад.</span>
+        </span>
+        <span>
+          <span>Каждый второй сдает ДВИ на </span>
+          <span class="text_accent">90+ баллов.</span>
+        </span>
+
+      </div>
+    </div>
+    <span
+      class="text_bold">Каждый выбирает свой путь поступления.<br/>А некоторые готовятся и к олимпиадам, и ДВИ.</span>
+  </div>
+</section>
+
+<section class="results-2022 wrapper-inner">
+  <span class="title">Результаты 2022&#8209;2023</span>
+  <div class="results-2022__wrapper">
+    <div class="results-2022__wrapper-text">
+      <div>
+        <span>2022&#8209;2023 – год старта МедиаОлимпа.</span><br/>
+        <span>За этот год мы сделали рекордные результаты по поступлению по олимпиадам и ДВИ.</span>
+      </div>
+      <span pAnimateOnScroll
+            enterClass="fadeinleftlight">
+        <span>Более </span>
+        <span class="text_accent">35 дипломов</span>
+        <span> перечневых олимпиад</span>
+      </span>
+      <span pAnimateOnScroll
+            enterClass="fadeinleftlight">
+        <span>Более </span>
+        <span class="text_accent">70</span>
+        <span> человек сдали ДВИ </span>
+        <span class="text_accent">на высокий балл</span>
+      </span>
+      <span pAnimateOnScroll
+            enterClass="fadeinleftlight">
+        <span>Более </span>
+        <span class="text_accent">100</span>
+        <span> поступили на </span>
+        <span class="text_accent">бюджет</span>
+     </span>
+    </div>
+    <img pAnimateOnScroll
+         enterClass="fadeinbottom"
+         src="../../../../assets/images/results/steps.png"
+         loading="lazy"
+         alt="график">
+  </div>
+  <a href="https://vk.com/mediaolimpjur?w=wall-214661467_2525"
+     target="_blank"
+     class="link_button">
+    Смотреть список выпускников
+  </a>
+</section>
+
+<section class="results-2023 wrapper-inner">
+  <span class="title">Результаты 2023&#8209;2024</span>
+  <div class="results-2023__wrapper">
+    <div pAnimateOnScroll
+         enterClass="fadeinbottom"
+         class="results-2023__card">
+      <span class="results-2023__title text_bold">Олимпиадный сезон</span>
+      <ul class="results-2023__card-wrapper olympiads">
+        <li>"Высшая проба" - <span class="text_bold">29</span> дипломантов</li>
+        <li>РАНХиГС - <span class="text_bold">49</span> дипломантов</li>
+        <li>СПбГУ - <span class="text_bold">10</span> дипломантов</li>
+        <li>"Ломоносов" - <span class="text_bold">2</span> дипломанта <br/><span
+          class="text_bold">(из 9 в списке!)</span></li>
+      </ul>
+    </div>
+    <div pAnimateOnScroll
+         enterClass="fadeinbottom"
+         class="results-2023__card">
+      <span class="results-2023__title text_bold">ДВИ</span>
+      <div class="results-2023__card-wrapper admission-tests">
+        <span>В процессе подготовки будущих высокобалльников и студентов лучших вузов!</span>
+        <a [routerLink]="'/' + ERoute.COURSES + '/' + ERoute.ADMISSION_TESTS"
+           class="link_button">
+          <span>ГОТОВИТЬСЯ С НАМИ</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="histories wrapper-inner">
+  <span class="title">истории учеников</span>
+  <div class="histories__wrapper">
+    @for (history of histories; track $index) {
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="histories__card">
+        <div>
+          <span class="histories__card-title">{{ history[LCard.TITLE] }},</span><br/>
+          <span class="histories__card-subtitle">{{ history[LImgCard.SUBTITLE] }}</span>
+        </div>
+        <div class="histories__card-content">
+          <div class="histories__card-img">
+            <img [src]="history[LImgCard.SRC]"
+                 [alt]="history[LCard.TITLE]">
+          </div>
+          <div class="histories__card-text">
+            {{ history[LCard.TEXT] }}
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <a href="https://vk.com/@mediaolimpjur-istorii-uspeha-vypusknikov-mediaolimpa"
+     target="_blank"
+     class="link_button">
+    <span>Еще больше историй поступления</span>
+  </a>
+</section>
+
+<section class="youtube wrapper-inner">
+  <span class="youtube__title text_color text_bold">Наши выпускники об учебе на журфаках и подготовке к поступлению</span>
+  <div class="youtube__wrapper">
+    <iframe src="https://www.youtube.com/embed/nWedUHTrkR8?si=knBfxkUJQxOt1q0q"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+    ></iframe>
+    <iframe src="https://www.youtube.com/embed/2k4bkPej_0I?si=PT2NDLTnebgm9CDc"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+    ></iframe>
+    <iframe src="https://www.youtube.com/embed/BJmHv8zG-FY?si=-3Axgg5mTvzzIyHg"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+    ></iframe>
+  </div>
+  <a href="https://vk.com/topic-214661467_49139854"
+     target="_blank"
+     class="link_button">
+    <span>смотреть отзывы</span>
+  </a>
+</section>

@@ -1,0 +1,44 @@
+@import "../../../../assets/styles/theming.scss";
+
+:host {
+  @include flexWrapper();
+  gap: $gap;
+
+  div {
+    @include flexWrapper();
+    gap: $gap;
+    padding-left: padding_l(2);
+
+    a {
+      @include underlineLink();
+
+      &:before {
+        $size: calc(adaptiveValue(22, 16) * 1.35);
+        @include blockSize($size, $size);
+        @include animation();
+        content: '';
+        background-size: contain;
+        background-color: rgba($black, .7);
+        display: inline-block;
+        position: absolute;
+        right: calc(100% + 8px);
+      }
+
+      @include onHover {
+        &:before {
+          background-color: $orange-100;
+        }
+      }
+
+      &.vk:before {
+        -webkit-mask-image: url("../../../../assets/svg/vk.svg");
+        mask-image: url("../../../../assets/svg/vk.svg");
+      }
+
+      &.tg:before {
+        -webkit-mask-image: url("../../../../assets/svg/tg.svg");
+        mask-image: url("../../../../assets/svg/tg.svg");
+      }
+    }
+  }
+}

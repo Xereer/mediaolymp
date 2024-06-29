@@ -1,0 +1,174 @@
+@import "../assets/styles/theming.scss";
+
+:host {
+  @include flexWrapper(column, space-between, stretch);
+  @include wrapperInner();
+  min-height: 100vh;
+
+  .header {
+    @include flexWrapper(row, space-between, center);
+    @include blockSize(100%, $header-height);
+    position: fixed;
+    z-index: 9999;
+    gap: $gap;
+    padding-block: padding_s(2);
+    background-color: $white;
+    box-shadow: rgba($black, 0.2) 0 3px 12px;
+    overflow: hidden;
+
+    &__logo {
+      @include flexWrapper(row, center, center);
+      height: 100%;
+      aspect-ratio: 2/1;
+    }
+
+    .menu {
+      @include flexWrapper(column, space-between, center);
+      @include blockSize(40px, 30px);
+      padding: padding_s(2);
+      cursor: pointer;
+
+      .line {
+        width: 30px;
+        position: relative;
+
+        &:before {
+          @include blockSize(100%, 2px);
+          @include animation();
+          content: '';
+          position: absolute;
+          background: $black;
+          border-radius: 2px;
+        }
+      }
+
+      &_open .line {
+        &_top:before {
+          transform: translate(-1px, 7px) rotate(45deg);
+        }
+
+        &_center:before {
+          opacity: 0;
+        }
+
+        &_bottom:before {
+          transform: translate(-1px, -7px) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  .main {
+    @include flexWrapper();
+    flex-grow: 1;
+    padding-top: $header-height;
+  }
+
+  .footer {
+    @include flexWrapper(column, flex-start, stretch);
+    @include font-size-s();
+    gap: $gap;
+    padding-block: adaptiveValue(48, 32) padding_l(2);
+    text-align: center;
+
+    &__media {
+      @include flexWrapper(row, space-around);
+      gap: gap_l(2.5);
+      padding-bottom: adaptiveValue(32, 16);
+    }
+
+    &__docs {
+      @include flexWrapper(row, space-around);
+      font-size: adaptiveValue(16, 14);
+      padding-top: adaptiveValue(32, 16);
+      white-space: nowrap;
+      gap: gap_s(2);
+      border-top: 1px solid rgba($black, .1);
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      div {
+        @include flexWrapper(row, space-around);
+        flex-grow: 1;
+        gap: gap_s(2) $gap;
+
+        .link {
+          @include animation(.2s);
+          cursor: pointer;
+
+          span {
+            border-bottom: 1px solid currentColor;
+          }
+
+          @include onHover() {
+            color: $orange-100;
+          }
+        }
+
+        @include maxWidth($breakpoint-m) {
+          span {
+            flex: 1 0 40%;
+          }
+        }
+
+        @include maxWidth($breakpoint-s) {
+          flex-direction: column;
+
+          span {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .p-sidebar {
+    &-mask {
+      top: $header-height;
+    }
+
+    &-right {
+      width: fit-content;
+      padding-block: $header-height 200px;
+      height: calc(100% + 200px);
+    }
+
+    &-header {
+      display: none;
+    }
+
+    &-content {
+      @include flexWrapper(column, space-between);
+    }
+  }
+
+  .p-scrolltop {
+    $size: adaptiveValue(48, 30);
+    @include blockSize($size, $size);
+
+    &-icon {
+      $size: calc($size / 2);
+      @include blockSize($size, $size);
+    }
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: $orange-100 $white;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $orange-100;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $white;
+  }
+}

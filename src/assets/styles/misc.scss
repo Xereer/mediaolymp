@@ -1,0 +1,60 @@
+// common
+$padding: 16px;
+$margin: 16px;
+$gap: 16px;
+$border-radius: 8px;
+$transition: .4s;
+$font-size: 16;
+$font-bold: 700;
+
+$header-height: 60px;
+$wrapper-padding-inline: adaptiveValue(100, 20);
+
+// adaptive breakpoints
+$breakpoint-s: 450;
+$breakpoint-m: 768;
+$breakpoint-l: 1024;
+$breakpoint-xl: 1450;
+
+// functions
+@function padding_l($multiplier) {
+  @return $padding * $multiplier;
+}
+
+@function padding_s($divider) {
+  @return $padding / $divider;
+}
+
+@function margin_l($multiplier) {
+  @return $margin * $multiplier;
+}
+
+@function margin_s($divider) {
+  @return $margin / $divider;
+}
+
+@function gap_l($multiplier) {
+  @return $gap * $multiplier;
+}
+
+@function gap_s($divider) {
+  @return $gap / $divider;
+}
+
+@function border_radius_l($multiplier) {
+  @return $border-radius * $multiplier;
+}
+
+@function border_radius_s($divider) {
+  @return $border-radius / $divider;
+}
+
+/**
+ $startSize - значение свойства на макетных размерах
+ $minSize - значение свойства на ширине $minSizeContainer
+ $maxWidthContainer - ширина макета
+ $minSizeContainerWidth - минимальная ширина
+ */
+@function adaptiveValue($startSize, $minSize, $maxWidthContainer: 1440, $minSizeContainerWidth: 375) {
+  @return calc(#{$minSize + px} + (#{$startSize} - #{$minSize}) * ((100vw - #{$minSizeContainerWidth + px}) / (#{$maxWidthContainer} - #{$minSizeContainerWidth})));
+}

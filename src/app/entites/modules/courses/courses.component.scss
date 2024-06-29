@@ -1,0 +1,88 @@
+@import "../../../../assets/styles/theming";
+
+:host {
+  @include flexWrapper(column, flex-start, stretch);
+  @include blockSize();
+  @include font-size-s();
+  @include fillLinkButton();
+  @include title();
+  @include firstTitle(70%);
+  @include text();
+  gap: adaptiveValue(64, 32);
+  padding: adaptiveValue(64, 32) $wrapper-padding-inline;
+  overflow: hidden;
+  background: $orange-40-a url("../../../../assets/images/lines/lines-8.png") no-repeat center;
+  background-size: cover;
+  flex-grow: 1;
+
+  .wrapper {
+    display: grid;
+    align-items: stretch;
+    gap: adaptiveValue(64, 32);
+    width: 80%;
+    margin-inline: auto;
+
+    @include minWidth($breakpoint-m) {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+    }
+
+    @include minWidth($breakpoint-l) {
+      width: 80%;
+      margin-inline: auto;
+    }
+
+    @include minWidth($breakpoint-xl + 1000) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .course {
+    @include flexWrapper(column, flex-start, center);
+    @include card();
+    gap: adaptiveValue(24, 16);
+    padding: adaptiveValue(24, 16);
+    overflow: hidden;
+    cursor: pointer;
+
+    @include minWidth($breakpoint-m) {
+      @include onHover {
+        img {
+          opacity: 1;
+          filter: grayscale(0);
+        }
+      }
+    }
+
+    &__title {
+      @include font-size-m();
+      align-self: flex-start;
+    }
+
+    &__description {
+      flex-grow: 1;
+      text-align: center;
+
+      span:first-child {
+        padding-right: adaptiveValue(4,2);
+      }
+    }
+
+    img {
+      @include animation();
+      position: relative;
+      top: calc(48px + 2 * #{adaptiveValue(24, 16)});
+      width: calc(100% + 2 * #{adaptiveValue(24, 16)});
+      aspect-ratio: 1;
+      max-width: unset;
+      opacity: .5;
+      object-fit: cover;
+      filter: grayscale(1);
+    }
+
+    .link_button {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}

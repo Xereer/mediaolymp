@@ -1,0 +1,55 @@
+<ng-container *ngLet="(isMobile$ | async) as isMobile">
+  <header class="header wrapper-inner">
+    <a href="/home" class="header__logo">
+      <img src="../assets/svg/logo.svg"
+           alt="Логотип онлайн-школы 'МедиаОлимп'"/>
+    </a>
+    @if (isMobile) {
+      <div [class.menu_open]="isMenuOpen"
+           (click)="toggleMenu()"
+           class="menu">
+        <span class="line line_top"></span>
+        <span class="line line_center"></span>
+        <span class="line line_bottom"></span>
+      </div>
+    } @else {
+      <app-menu/>
+    }
+  </header>
+
+  <main class="main">
+    <router-outlet (activate)="closeMenu()"/>
+    @if (!isMobile || !isMenuOpen) {
+      <p-scrollTop [threshold]="300"/>
+    }
+  </main>
+
+  <footer class="footer">
+    <span>Наши группы</span>
+    <app-links class="footer__media"/>
+    <div class="footer__docs wrapper-inner">
+      <div>
+        <span (click)="openPdf()"
+              class="link">
+          <span>Публичная оферта</span>
+        </span>
+        <span>ИП Калинина Д.А.</span>
+      </div>
+      <div>
+        <span>ОГРНИП: 324180000006938</span>
+        <span>ИНН: 182910294688</span>
+      </div>
+    </div>
+  </footer>
+
+  @if (isMobile) {
+    <p-sidebar [(visible)]="isMenuOpen"
+               [showCloseIcon]="false"
+               transitionOptions="400ms cubic-bezier(0, 0, 0.2, 1)"
+               appendTo="body"
+               position="right">
+      <app-menu/>
+      <app-links/>
+    </p-sidebar>
+  }
+</ng-container>

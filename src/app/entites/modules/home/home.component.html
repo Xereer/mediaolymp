@@ -1,0 +1,183 @@
+<section class="about wrapper-inner">
+  <span class="title">
+      О школе
+  </span>
+  <div class="about__wrapper">
+    <h1 class="about__title">
+      <span class="text_bold">МедиаОлимп </span>
+      <span>- подготовка<br/>к поступлению на журфак, медиаком и филфак.</span>
+    </h1>
+    <h2>
+      <span>Готовим к </span>
+      <span class="text_accent">перечневым олимпиадам</span><br/>
+      <span> по </span>
+      <span class="text_accent">журналистике и литературе и к ДВИ.</span>
+    </h2>
+    <h2>
+      <span>Наши ученики поступают </span>
+      <span class="text_accent">на бюджет</span><br/>
+      <span> в </span>
+      <span class="text_accent">столичные и региональные вузы.</span>
+    </h2>
+    <a href="https://classroom.google.com/c/NjYxNTE2OTMxNzk1?cjc=vfg66jo"
+       target="_blank"
+       class="link_button">
+      Получить уроки
+    </a>
+  </div>
+</section>
+
+<div class="wrapper wrapper-inner">
+  <section class="program text_bold">
+    <div class="program__block">
+      <span class="text_bold">К ДВИ в какие вузы мы готовим:</span>
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="program__block-content">
+        <div class="program__block-content_center text_color">
+          <span>во </span>
+          <span class="text_bold text_caps">ВСЕ</span>
+          <span> вузы,<br/>в том числе и региональные</span>
+        </div>
+      </div>
+    </div>
+    <div class="program__block olympiads">
+      <span class="text_bold">К каким олимпиадам мы готовим:</span>
+      <ul pAnimateOnScroll
+          enterClass="fadeinbottom"
+          class="program__block-content text_color olympiads__list">
+        <li>"Высшая проба"</li>
+        <li>"Ломоносов"</li>
+        <li>"Покори Воробьевы горы!"</li>
+        <li>
+          <span>"РАНХиГС"</span>
+          <span>"СПбГУ"</span>
+        </li>
+        <li>Плехановская олимпиада</li>
+        <li>Грибоедовская олимпиада</li>
+        <li>Толстовская олимпиада</li>
+        <li>олимпиада РГГУ</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reasons">
+    <span class="title title_accent">
+      <span>Почему</span>
+      <span class="title_accent-default"> "МедиаОлимп"?</span>
+    </span>
+    <div class="reasons__cards">
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="reasons__cards-item reasons__cards-item_winners">
+        <span>все преподаватели - </span>
+        <span class="text_bold text_caps">ПОБЕДИТЕЛИ</span>
+        <span> олимпиад или сдали ДВИ на высокие баллы, учатся на </span>
+        <span class="text_bold text_caps">БЮДЖЕТЕ</span>
+      </div>
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="reasons__cards-item reasons__cards-item_media">
+        <span>заключено сотрудничество с </span>
+        <span class="text_bold text_caps">ОФИЦИАЛЬНЫМИ СМИ</span>
+        <span>, в которых публикуются ученики</span>
+      </div>
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="reasons__cards-item reasons__cards-item_programs">
+        <span>программы реализуются </span>
+        <span class="text_bold text_caps">СОВМЕСТНО</span>
+        <span> с преподавателями вузов и действующими журналистами</span>
+      </div>
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="reasons__cards-item reasons__cards-item_universities">
+        <span>проводим совместные проекты с вузами - </span><br/>
+        <span class="text_bold">РАНХиГС, РЭУ&nbsp;им.&nbsp;В.Г.&nbsp;Плеханова</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="results wrapper-inner">
+  <span class="title">
+    <span>РЕЗУЛЬТАТЫ</span>
+    <span>НАШИХ УЧЕНИКОВ</span>
+  </span>
+  <div class="results__wrapper">
+    <div class="results__content">
+      <span>выпускники - </span>
+      <span class="text_bold">победители</span>
+      <span> нескольких перечневых олимпиад или сдали ДВИ на </span>
+      <span class="text_bold">высокие баллы</span>
+    </div>
+    <a [routerLink]="'/' + ERoute.RESULTS"
+       class="link_button">
+      смотреть результаты
+    </a>
+  </div>
+</section>
+
+<section class="study wrapper-inner">
+  <span class="title">КАК ПРОХОДИТ ОБУЧЕНИЕ</span>
+  <div class="study__wrapper">
+    @for (reasonsCard of reasonsCards; track $index) {
+      <div class="study__card">
+        <div class="study__card-wrapper">
+          <span class="study__card-text">{{ reasonsCard[LImage.ALT] }}</span>
+          <div class="study__card-img">
+            <img [src]="reasonsCard[LImage.SRC]"
+                 [alt]="reasonsCard[LImage.ALT]"
+                 loading="lazy">
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="feedback wrapper-inner">
+  <span class="title">
+    УЧЕНИКИ ЦЕНЯТ
+  </span>
+  <div class="feedback__wrapper">
+    @for (point of points; track $index) {
+      <div pAnimateOnScroll
+           enterClass="fadeinbottom"
+           class="point">
+        <div class="point__img">
+          <img [src]="point[LImage.SRC]"
+               [alt]="point[LImage.ALT]"
+               loading="lazy"/>
+        </div>
+        <div class="point__title">
+          <span>{{ point[LImage.ALT] }}</span>
+        </div>
+      </div>
+    }
+  </div>
+  <a href="https://vk.com/topic-214661467_49139854"
+     target="_blank"
+     class="link_button">
+    Смотреть отзывы
+  </a>
+</section>
+
+<section class="slider wrapper-inner">
+  <p-carousel [value]="sliderImages"
+              [numVisible]="1"
+              [numScroll]="1"
+              [circular]="true"
+              [autoplayInterval]="3000">
+    <ng-template let-image pTemplate="item">
+      <div class="slider__card">
+        <img [src]="image[LImage.SRC]"
+             [alt]="image[LImage.ALT]"
+             loading="lazy">
+      </div>
+    </ng-template>
+  </p-carousel>
+  <span class="title">
+    МЕДИАПИКНИК 2023
+  </span>
+</section>

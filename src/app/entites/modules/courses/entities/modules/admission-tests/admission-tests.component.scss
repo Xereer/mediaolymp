@@ -1,0 +1,490 @@
+@import "../../../../../../../assets/styles/theming";
+
+:host {
+  @include flexWrapper(column, flex-start, stretch);
+  @include wrapperInner();
+  @include font-size-s();
+  @include lightButton();
+  @include titledSection();
+  @include title();
+  @include text();
+  @include fadeIn();
+  background: $white;
+  gap: adaptiveValue(64, 32);
+  width: 100%;
+
+  .course {
+    padding-top: adaptiveValue(48, 24);
+    @include minWidth($breakpoint-s) {
+      position: relative;
+
+      &:after {
+        background: url("../../../../../../../assets/images/home/msu.png") no-repeat center right;
+        background-size: cover;
+        content: '';
+        position: absolute;
+        width: 50%;
+        aspect-ratio: 600 / 574;
+        right: 0;
+        top: 0;
+        transform: rotate(180deg);
+        opacity: .1;
+      }
+    }
+
+    .title {
+      @include flexWrapper();
+
+      .splash {
+        @include font-size-s();
+        font-weight: normal;
+        text-transform: none;
+
+        span:last-child {
+          color: $black;
+          padding-left: padding_s(4);
+        }
+      }
+    }
+
+    &__start {
+      @include flexWrapper(row, space-between, center);
+      gap: $gap;
+      position: relative;
+      z-index: 1;
+      padding: padding_s(2);
+      border-radius: $border-radius;
+      background: $orange-50;
+      cursor: pointer;
+
+      @include maxWidth($breakpoint-s) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .blocks {
+    @include flexWrapper(column, flex-start, stretch);
+    gap: adaptiveValue(24, 16);
+
+    &__wrapper {
+      display: grid;
+      gap: adaptiveValue(24, 12);
+
+      @include minWidth($breakpoint-m) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include minWidth($breakpoint-l) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    &__card {
+      @include flexWrapper(column, flex-start, stretch);
+      @include card();
+      padding: adaptiveValue(48, 16);
+      gap: adaptiveValue(16, 8);
+      background: $orange-55-a;
+      box-shadow: none;
+
+      @include minWidth($breakpoint-m) {
+        @include maxWidth($breakpoint-l) {
+          @include gridTrack(1, 1, 2, 1, 3);
+          @include gridTrack(2, 2, 3, 1, 2);
+          @include gridTrack(3, 1, 2, 3, 4);
+          @include gridTrack(4, 2, 3, 2, 4);
+          @include gridTrack(5, 1, 3);
+        }
+      }
+
+      @include minWidth($breakpoint-l) {
+        @include gridTrack(1, 1, 3);
+        @include gridTrack(2, 3, 4);
+        @include gridTrack(3, 1, 2);
+        @include gridTrack(4, 2, 4);
+        @include gridTrack(5, 1, 4);
+      }
+
+      @include minWidth($breakpoint-xl) {
+        @include gridTrack(4, 2, 3);
+        @include gridTrack(5, 3, 4);
+      }
+
+
+      &-title {
+        @include font-size-m();
+        position: relative;
+        align-self: flex-start;
+        padding-left: calc(#{adaptiveValue(28, 20)} + $padding);
+
+        &:after {
+          position: absolute;
+          content: '';
+          height: 100%;
+          aspect-ratio: 1;
+          left: 0;
+          background: no-repeat url("../../../../../../../assets/svg/courses/admission-tests/exam.svg");
+          background-size: contain;
+        }
+      }
+
+      &-text {
+        padding-top: adaptiveValue(16, 8);
+        border-top: 2px solid $orange-100;
+        min-width: 270px;
+      }
+    }
+  }
+
+  .program {
+    background: $orange-95-a;
+    padding-block: adaptiveValue(48, 16) adaptiveValue(80, 40);
+
+    .link_button {
+      align-self: center;
+      margin-top: adaptiveValue(32, 16);
+      position: relative;
+      z-index: 5;
+    }
+
+    &__wrapper {
+      @include flexWrapper(column, flex-start, stretch);
+      @include card();
+      gap: adaptiveValue(32, 24);
+      padding: adaptiveValue(48, 16);
+
+      @include minWidth($breakpoint-m) {
+        position: relative;
+
+        &:after {
+          @include blockSize();
+          content: '';
+          position: absolute;
+          background: url("../../../../../../../assets/images/lines/lines-7.png") no-repeat;
+          background-size: cover;
+          inset: 0;
+          opacity: .1;
+        }
+      }
+    }
+
+    &__card {
+      @include flexWrapper(row);
+      gap: adaptiveValue(16, 8);
+
+      .text_accent {
+        min-width: 25px;
+        text-align: center
+      }
+
+      &-wrapper {
+        @include flexWrapper(column, flex-start, stretch);
+      }
+
+      &-title {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  .lessons {
+    @include slider();
+
+    &__card {
+      @include flexWrapper(column, space-between, center);
+      height: calc(100% - 3px);
+      margin-inline: calc(#{adaptiveValue(32, 24)} / 2);
+      border-radius: border_radius_l(2);
+      overflow: hidden;
+      background: $orange-50;
+      box-shadow: $orange-50 0 0 3px;
+
+      span {
+        @include flexWrapper(column, center, center);
+        @include font-size-s();
+        padding: adaptiveValue(24, 16);
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      img {
+        width: 100%;
+        aspect-ratio: 16/9;
+      }
+    }
+  }
+
+  .speakers {
+    padding-block: adaptiveValue(48, 24) adaptiveValue(64, 32);
+    border-block: 2px dashed $orange-100;
+    overflow: hidden;
+    background: $orange-55-a url("../../../../../../../assets/images/lines/lines-8.png") top -40px center;
+    background-size: cover;
+
+    @include maxWidth($breakpoint-s) {
+      background-position: top -40px left -200px;
+    }
+
+    &__wrapper {
+      @include flexWrapper(column, flex-start, stretch);
+      gap: adaptiveValue(48, 32);
+
+      @include minWidth($breakpoint-l) {
+        width: 70%;
+        margin-inline: auto;
+      }
+    }
+
+    &__item {
+      @include flexWrapper(row, flex-start, flex-end);
+      gap: gap_s(2) $gap;
+
+      @include maxWidth($breakpoint-m) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      &_right {
+        justify-content: flex-end;
+        @include maxWidth($breakpoint-m) {
+          align-items: flex-end;
+        }
+      }
+    }
+
+    &__title {
+      @include minWidth($breakpoint-m) {
+        align-self: flex-end;
+      }
+
+      &_right {
+        text-align: right;
+        @include maxWidth($breakpoint-m) {
+          order: 1;
+        }
+      }
+
+      .text_bold {
+        @include font-size-m();
+      }
+    }
+
+    &__img {
+      @include card();
+      width: calc(100% / 3.5);
+      min-width: calc(100% / 3.5);
+      object-fit: cover;
+      object-position: center;
+
+      @include maxWidth($breakpoint-s) {
+        width: 50%;
+      }
+    }
+  }
+
+  .rates {
+    gap: 0 !important;
+
+    &__wrapper {
+      @include flexWrapper(row, space-between, stretch);
+      gap: adaptiveValue(24, 12);
+      padding-top: adaptiveValue(32, 24);
+      flex-wrap: wrap;
+    }
+
+    &__card {
+      @include flexWrapper(column, space-between, stretch);
+      @include card();
+      box-shadow: none;
+      background: $orange-55-a;
+      background-size: cover;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid $orange-50;
+
+      @include minWidth($breakpoint-s) {
+        flex: 1 0 max(calc((100% - 3 * #{adaptiveValue(32, 24)}) / 4), 410px);
+      }
+
+      &:after {
+        @include blockSize();
+        position: absolute;
+        content: '';
+        border-radius: $border-radius * 2;
+        background-size: cover;
+      }
+
+      &:nth-child(1):after {
+        background-image: url("../../../../../../../assets/images/lines/lines-5.png");
+      }
+
+      &:nth-child(3):after {
+        background-image: url("../../../../../../../assets/images/lines/lines-6.png");
+        background-position: right;
+      }
+
+      &:nth-child(2):after {
+        background-image: url("../../../../../../../assets/images/lines/lines-4.png");
+      }
+
+      &:nth-child(4):after {
+        background-image: url("../../../../../../../assets/images/lines/lines-3.png");
+        background-position: right;
+      }
+
+      &-header,
+      &-content,
+      &-wrapper,
+      a {
+        position: relative;
+        z-index: 1;
+      }
+
+      &-header {
+        @include flexWrapper(row, space-between, center);
+        @include font-size-m();
+        background: rgba($orange-50, 1);
+        padding: adaptiveValue(24, 16) adaptiveValue(32, 16);
+        gap: $gap;
+
+        .comment {
+          position: relative;
+
+          &:after {
+            content: '*';
+            position: absolute;
+            width: 10px;
+            right: -12px;
+            color: $orange-100;
+            font-weight: $font-bold;
+          }
+        }
+      }
+
+      &-content {
+        @include flexWrapper(column, flex-start);
+        flex-grow: 1;
+        padding: adaptiveValue(24, 16) adaptiveValue(32, 16);
+
+        span {
+          $size: calc(adaptiveValue(22, 16) / 2);
+          position: relative;
+          padding-left: calc(1.75 * $size);
+
+          &:before {
+            @include blockSize($size, $size);
+            content: '';
+            position: absolute;
+            left: 0;
+            top: calc($size * .9);
+            border-radius: 50%;
+            border: 2px solid $orange-100;
+          }
+        }
+      }
+
+      &-wrapper {
+        border-top: 2px solid $orange-50;
+        padding: adaptiveValue(24, 16) adaptiveValue(32, 16);
+        background: $orange-25-a;
+
+        .price {
+          @include flexWrapper(row, space-between, flex-end);
+          gap: gap_s(4);
+
+          &_dotted {
+            border-bottom: 2px dotted $orange-75;
+            margin-bottom: calc(#{adaptiveValue(22, 16)} * .35);
+            flex-grow: 1;
+          }
+        }
+      }
+
+      a {
+        padding: adaptiveValue(24, 16);
+        border-top: 2px solid $orange-50;
+        border-radius: 0;
+        width: 100%;
+        color: $black;
+      }
+    }
+  }
+
+  .promo {
+    @include flexWrapper(column, flex-start, stretch);
+    overflow: hidden;
+    background: $orange-40-a;
+    padding-block: adaptiveValue(64, 32);
+    gap: adaptiveValue(32, 24);
+
+    &__content {
+      @include flexWrapper(column, flex-start, stretch);
+      gap: adaptiveValue(32, 16);
+
+      &-text {
+        @include font-size-m();
+
+        &:last-of-type {
+          text-align: right;
+        }
+      }
+
+      img {
+        aspect-ratio: 3/1;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: $border-radius;
+      }
+    }
+
+    &__actions {
+      @include flexWrapper(column, space-evenly, stretch);
+      gap: gap_s(2) $gap;
+
+      .link_button {
+        width: 100%;
+      }
+
+      @include minWidth($breakpoint-s + 100) {
+        flex-direction: row;
+
+        .link_button {
+          max-width: max(330px, 30%);
+        }
+      }
+    }
+  }
+
+  .faq {
+    box-shadow: rgba($black, 0.1) 0 20px 20px;
+    padding-bottom: adaptiveValue(64, 32);
+    margin-bottom: 20px;
+
+    .link_button {
+      align-self: center;
+      cursor: pointer;
+    }
+
+    ::ng-deep {
+      .p-accordion {
+        @include font-size-s();
+
+        .p-accordion-header-link {
+          @include animation($transition / 2);
+          background: $orange-40-a;
+          border-color: $orange-40-a;
+
+          @include onHover {
+            background: $orange-95-a;
+          }
+        }
+
+        .p-accordion-content {
+          color: $black;
+          border-color: $orange-50;
+        }
+      }
+    }
+  }
+}

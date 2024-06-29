@@ -1,0 +1,25 @@
+@import "../../../../assets/styles/theming.scss";
+
+:host {
+  @include flexWrapper(row, space-between, center);
+  @include outlineLinkButton();
+  @include font-size-s();
+  gap: gap_s(4) adaptiveValue(24, 12);
+  background-color: $white;
+
+  @include maxWidth($breakpoint-l) {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: padding_l(2) $padding $padding;
+
+    .link_button {
+      margin-block: $margin;
+    }
+  }
+
+  .route {
+    @include underlineLink();
+    padding: padding_s(4) padding_s(2);
+    text-transform: lowercase;
+  }
+}

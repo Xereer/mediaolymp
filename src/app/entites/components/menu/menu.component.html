@@ -1,0 +1,21 @@
+@for (menuRoute of menuRoutes; track $index) {
+  <a [routerLink]="'/' + menuRoute[LRouterLink.ROUTER_LINK]"
+     class="route">
+    {{ menuRoute[LRouterLink.TITLE] }}
+  </a>
+}
+<a href="https://vk.com/topic-214661467_49139854"
+   target="_blank"
+   class="route">
+  отзывы
+</a>
+<a href="https://vk.com/@mediaolimpjur-informaciya-dlya-roditelei"
+   target="_blank"
+   class="route">
+  родителям
+</a>
+<a href="https://classroom.google.com/c/NjYxNTE2OTMxNzk1?cjc=vfg66jo"
+   target="_blank"
+   class="link_button">
+  Получить уроки
+</a>
