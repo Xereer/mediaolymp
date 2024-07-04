@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
     window.open('assets/files/MediaOlimp_oferta.pdf');
   }
 
+  public openEducationProgramPdf(): void {
+    window.open('assets/files/Программа_доп_образования_от_03_06_2024_Школа_будущего_олимпиадника.pdf');
+  }
+
   /**
    * Отслеживание медиа-запроса
    * @private

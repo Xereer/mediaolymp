@@ -11,6 +11,7 @@
 ### Боевая среда:
 
 ***
-###### Frontend: Караваева А.И. (tg: [kailikekia](@kailikekia))
+###### Frontend: Бородин Г.А. (tg: [gavrieli_b](@gavrieli_b))
 ###### Заказчик: Калинина Д.А. (tg: [daryakalinina_olymp](@daryakalinina_olymp))
+###### Backend: Романов Г.С. (tg: [Xereer](@xereer))
 ###### 2024 г. 

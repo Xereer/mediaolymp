@@ -108,13 +108,13 @@
           }
         }
 
-        @include maxWidth($breakpoint-m) {
+        @include maxWidth($breakpoint-l) {
           span {
-            flex: 1 0 40%;
+            flex: 1 0 30%;
           }
         }
 
-        @include maxWidth($breakpoint-s) {
+        @include maxWidth($breakpoint-m) {
           flex-direction: column;
 
           span {
