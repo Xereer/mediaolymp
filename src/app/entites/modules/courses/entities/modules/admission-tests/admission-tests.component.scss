@@ -487,4 +487,58 @@
       }
     }
   }
+
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  .input-text-fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    padding: 10px 10px;
+
+    .label {
+      margin-right: 10px;
+    }
+
+    .input {
+      width: 450px;
+    }
+  }
+
+  .checkboxes {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    width: 70%;
+    padding: 10px 0;
+    text-decoration: underline;
+
+  }
+
+  .custom-button {
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+
+
+  }
+
+
 }

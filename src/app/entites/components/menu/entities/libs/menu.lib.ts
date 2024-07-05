@@ -16,6 +16,10 @@ export abstract class MenuLib {
       [LRouterLink.ROUTER_LINK]: ERoute.RESULTS,
       [LRouterLink.TITLE]: 'Результаты'
     },
+    {
+      [LRouterLink.ROUTER_LINK]: ERoute.INTELLIGENCE,
+      [LRouterLink.TITLE]: 'Сведения об образовательной организации'
+    },
     // {
     //   [LRouterLink.ROUTER_LINK]: ERoute.HOME,
     //   [LRouterLink.TITLE]: 'Отзывы'

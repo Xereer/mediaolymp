@@ -149,10 +149,10 @@
             </div>
           }
         </div>
-        <a [href]="rate[LRate.URL]"
-           target="_blank"
+        <!-- [href]="rate[LRate.URL]" -->
+        <a target="_blank"
            class="link_button">
-          <span>выбрать</span>
+          <span (click)="showDialog(rate)">выбрать</span>
         </a>
       </div>
     }
@@ -208,3 +208,109 @@
     <span>ЗАПИСАТЬСЯ НА КУРС</span>
   </span>
 </section>
+
+<p-dialog [modal]="true"
+          [closable]="closable"
+          [dismissableMask]="dismissableMask"
+          [style]="{'width': width, 'height': height}"
+          [contentStyle]="contentStyle"
+          [(visible)]="display"
+          (onHide)="onDialogClose()"
+          header="Перед оплатой заполните, пожалуйста, анкету.">
+  <p>На указанную электронную почту или в личные сообщения ВК мы направим вам доступ к курсу.</p>
+
+  <form id="myForm">
+  <div class="input-fields">
+    <div class="input-text-fields">
+      <label class="label">
+        ФИО
+      </label>
+      <input class="input"
+             id="fullName"
+             type="text"
+             pInputText
+             />
+    </div>
+    <div class="input-text-fields">
+      <label class="label">
+        Номер телефона
+      </label>
+      <input class="input"
+             id="phoneNumber"
+             type="text" pInputText
+             />
+    </div>
+    <div class="input-text-fields">
+      <label class="label">
+        Электронная почта
+      </label>
+      <input class="input"
+             id="email"
+             type="text"
+             pInputText
+             />
+    </div>
+    <div class="input-text-fields">
+      <label class="label">
+        Ссылка на страницу ВК
+      </label>
+      <input class="input"
+             id="vk"
+             type="text"
+             pInputText
+             />
+    </div>
+    <br>
+    <div style="text-align: left; white-space: nowrap; width: 70%">
+      Сообщение с доступом придет в течение 30 минут с момента оплаты.
+
+      По всем вопросам <br> вы можете обращаться в сообщения нашей группы ВК
+      <label (click)="openVK()"
+             style="text-decoration: underline;">
+        https://vk.com/mediaolimpjur
+      </label><br>
+
+      Оплачивая курс, вы соглашаетесь с публичной офертой МедиаОлимпа<br>
+      <label (click)="openAcceptOffer()"
+             style="text-decoration: underline;">
+        (https://mediaolimpjur.ru/assets/files/MediaOlimp_oferta.pdf)
+      </label>
+      <br>
+      и обработкой персональных данных
+      <br>
+      <label (click)="openPersonalData()"
+             style="text-decoration: underline;">
+        (вставить ссылку)
+      </label>
+    </div>
+    <br>
+    <div class="checkboxes">
+      <input type="checkbox" id="acceptOffer">
+      <label (click)="openAcceptOffer()">
+        Согласие с офертой
+      </label>
+    </div>
+
+    <div class="checkboxes">
+      <input type="checkbox" id="personalData">
+      <label (click)="openPersonalData()">
+        Согласие на обработку персональных данных
+      </label>
+    </div>
+    <br>
+    <div class="buttons">
+      <p-button (click)="hideDialog()"
+                class="custom-button">
+        Отменить
+      </p-button>
+      <p-button (click)="sendInputValues()"
+                class="custom-button">
+        Отправить заявку
+      </p-button>
+    </div>
+  </div>
+  </form>
+</p-dialog>
+
+
+

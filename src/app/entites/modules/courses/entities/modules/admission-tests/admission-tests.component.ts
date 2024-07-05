@@ -12,11 +12,14 @@ import {LImage} from "../../../../../labels/image.label";
 import {IImage} from "../../../../../interfaces/image.interface";
 import {CarouselModule} from "primeng/carousel";
 import {MainService} from "../../../../../services/main.service";
-import {Observable} from "rxjs";
+import {map, Observable, pipe, tap} from "rxjs";
 import {NgLetModule} from "ng-let";
 import {TimelineModule} from "primeng/timeline";
 import {ERoute} from "../../../../../enums/route.enum";
 import {RouterLink} from "@angular/router";
+import {DialogModule} from "primeng/dialog";
+import {InputTextModule} from "primeng/inputtext";
+import {Button} from "primeng/button";
 
 @Component({
   selector: 'app-admission-tests',
@@ -30,6 +33,9 @@ import {RouterLink} from "@angular/router";
     NgLetModule,
     TimelineModule,
     RouterLink,
+    DialogModule,
+    InputTextModule,
+    Button
   ]
 })
 export class AdmissionTestsComponent {
@@ -55,5 +61,87 @@ export class AdmissionTestsComponent {
       top: element.getBoundingClientRect().top + window.scrollY - 80,
       behavior: "smooth"
     });
+  }
+
+  public display: boolean = false;
+  public rate: any = null;
+  public closable: boolean = true;
+  public dismissableMask: boolean = false;
+  // Установите высоту и ширину для вашего popup
+  public width: string = '1000px';
+  public height: string = '500px';
+  // Стили контента для вашего popup (можно использовать, например, для настройки отступов)
+  public contentStyle: any = { 'text-align': 'center' };
+
+  showDialog(rate: any) {
+    this.rate = rate;
+    this.display = true;
+  }
+
+  public onDialogClose() {
+    this.display = false;
+  }
+
+  public hideDialog() {
+    this.display = false;
+    const form = document.getElementById('myForm')!;
+    const formElements = ['fullName', 'phoneNumber', 'email', 'vk'];
+    const formCheckboxes = ['acceptOffer', 'personalData'];
+    let countOfEmpty = 0;
+    for (let i: number = 0; i < formElements.length; i++) {
+      // @ts-ignore
+      form.elements[formElements[i]].value = null;
+    }
+
+    for (let i: number = 0; i < formCheckboxes.length; i++) {
+      // @ts-ignore
+      form.elements[formCheckboxes[i]].checked = null;
+    }
+    this.rate = null;
+  }
+
+  public sendInputValues() {
+    // Получаем форму по id
+    const form = document.getElementById('myForm')!;
+    const formElements = ['fullName', 'phoneNumber', 'email', 'vk'];
+    const formCheckboxes = ['acceptOffer', 'personalData'];
+    let countOfEmpty = 0;
+    for (let i: number = 0; i < formElements.length; i++) {
+      // @ts-ignore
+      if (!form.elements[formElements[i]].value.length) {
+        countOfEmpty++;
+      }
+    }
+
+    for (let i: number = 0; i < formCheckboxes.length; i++) {
+      // @ts-ignore
+      if (!form.elements[formCheckboxes[i]].checked) {
+        countOfEmpty++;
+      }
+    }
+
+    if (Boolean(countOfEmpty)) {
+      alert('Внимание! Заполните все обязательные поля');
+    return;
+    }
+
+    console.log(this.rate);
+
+    // прокидывание this.rate на бэк
+
+    this.hideDialog();
+  }
+
+  public openAcceptOffer(): void {
+    window.open('https://mediaolimpjur.ru/assets/files/MediaOlimp_oferta.pdf');
+  }
+
+  public openPersonalData(): void {
+    alert('Здесь могла быть ссылка на персональные данные, но Глеб её потерял');
+    //window.open('https://media-olimp.ru/a/agreement/2/');
+  }
+
+  public openVK(): void {
+    window.open('https://vk.com/mediaolimpjur');
   }
 }

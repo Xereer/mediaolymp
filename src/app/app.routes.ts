@@ -6,6 +6,7 @@ import {ERoute} from "./entites/enums/route.enum";
 import {
   AdmissionTestsComponent
 } from "./entites/modules/courses/entities/modules/admission-tests/admission-tests.component";
+import {IntelligenceComponent} from "./entites/modules/intelligence/intelligence.component";
 
 export const routes: Routes = [
   {
@@ -33,10 +34,10 @@ export const routes: Routes = [
     path: ERoute.RESULTS,
     component: ResultsComponent,
   },
-  // {
-  //   path: ERoute.FEEDBACK,
-  //   component:
-  // },
+  {
+    path: ERoute.INTELLIGENCE,
+    component: IntelligenceComponent
+  },
   // {
   //   path: ERoute.INFO,
   //   component:
